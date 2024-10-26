@@ -346,8 +346,8 @@ void LCD_Write_Cmd(uint8_t cmd)
 	LCD_DCX_LOW(); //DCX Low for cmd
 	while(!REG_READ_BIT(pSPI->SR,SPI_SR_TXE_Pos)); //Check buffer was empty
 	REG_WRITE(pSPI->DR,cmd);
-	while(REG_READ_BIT(pSPI->SR,SPI_SR_BSY_Pos)); //wait for send all cmd,BSY so empty
 	while(!REG_READ_BIT(pSPI->SR,SPI_SR_TXE_Pos)); //Check buffer was empty
+	while(REG_READ_BIT(pSPI->SR,SPI_SR_BSY_Pos)); //wait for send all cmd,BSY so empty
 	LCD_DCX_HIGH(); //To start progress about send data
 	LCD_CSX_HIGH(); //Ending progress about send cmd
 }
